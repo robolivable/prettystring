@@ -182,11 +182,24 @@ class prettystring(str):
         return '{}'.format(self.brush)
 
     def format(self, *args, **kwargs):
+        '''Override method str.format to add support for inserting strings into
+        prettystrings.
+
+        This method currently only returns a regular string.
+
+        TODO FIXME: Improve implementation by returning instance of
+                    prettystring. The problem here is that calling super's
+                    format on this child instance returns a string that doesn't
+                    preserve the color codes we want (since the codes are
+                    defined as instance member values, and are represented when
+                    self.__repr__ is called). A more involved implementation
+                    may require a C-level rewrite of the str.format method.
+        '''
         t_args = []
         t_kwargs = {}
         for arg in args:
             t_args.append('{}{}'.format(arg, self._composition()))
         for k in kwargs:
             t_kwargs[k] = '{}{}'.format(kwargs[k], self._composition())
-        #return super(prettystring, self).format(*t_args, **t_kwargs)
+        #return super(prettystring, self).format(*t_args, **t_kwargs) # FIXME
         return self.__repr__().format(*t_args, **t_kwargs)
