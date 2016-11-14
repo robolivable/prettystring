@@ -1,3 +1,28 @@
+# prettystring prettystring.py
+#
+# The MIT License (MIT)
+# Copyright (c) 2016 Robert Oliveira
+# 
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files
+# (the "Software"), to deal in the Software without restriction,
+# including without limitation the rights to use, copy, modify, merge,
+# publish, distribute, sublicense, and/or sell copies of the Software,
+# and to permit persons to whom the Software is furnished to do so,
+# subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+# BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+# ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from enum import Enum
 
 class MARKUP(Enum):
@@ -8,6 +33,7 @@ class MARKUP(Enum):
     clr = '\033[0m' # clears anything (used to reset color back to default)
 
 class STYLE(Enum):
+    styledefault = ''
     bold = 1
     dim = 2
     underline = 4
@@ -87,6 +113,15 @@ class brush(object):
 
 class prettystring(str):
     def __new__(cls, contents=''):
+        '''Override __new__ and install style, color, and background color
+        Enums.
+
+        This allows a nice way of passing the formatting codes around:
+
+            from prettystring import prettystring as pstr
+            
+            pretty = pstr('sweet!').paint(pstr.blue) # pstr.blue = COLOR.blue
+        '''
         for attr in dir(STYLE):
             if callable(attr) or attr.startswith('__'):
                 continue
@@ -103,12 +138,32 @@ class prettystring(str):
 
     def __init__(self,
                  s='',
-                 stl=MARKUP.es, c=COLOR.default, bgc=BACKGROUND.bgdefault):
+                 stl=STYLE.styledefault,
+                 c=COLOR.default, bgc=BACKGROUND.bgdefault):
+        '''Initialize new prettystring.
+
+        Formatting may be set during initialization:
+
+            from prettystring import prettystring as pstr
+            
+            pretty = pstr('sweet!', pstr.blink, pstr.blue)
+
+        @param stl: STYLE
+        @param c: COLOR
+        @param bgc: BACKGROUND'''
         self.value = s
         self.brush = brush(stl, c, bgc)
         super(prettystring, self).__init__(s)
 
     def paint(self, m):
+        '''Apply medium to the prettystring.
+
+        Prettystring supports the list of ANSI color codes.
+
+        See README for the full list of supported mediums and the names of
+        their enums.
+
+        @param m: MARKUP or COLOR or BACKGROUND'''
         if isinstance(m, STYLE):
             self.brush.setstyle(m)
         if isinstance(m, COLOR):
