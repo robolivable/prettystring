@@ -62,17 +62,28 @@ class BACKGROUND(Enum):
     bgwhite = 107
 
 class brush(object):
-    def __init__(self, m=MARKUP.es):
-        self.code = m.value
+    def __init__(self, stl, c, bgc):
+        self.stl = stl
+        self.c = c
+        self.bgc = bgc
 
-    def setmedium(self, m):
-        self.code = m.value
+    def setstyle(self, s):
+        self.stl = s
+
+    def setcolor(self, c):
+        self.c = c
+
+    def setbgcolor(self, bgc):
+        self.bgc = bgc
+
+    def _code(self):
+        return '{};{};{}'.format(self.stl.value, self.c.value, self.bgc.value)
 
     def __str__(self):
         return self.__repr__()
 
     def __repr__(self):
-        return '{}{}{}'.format(MARKUP.esc.value, self.code, MARKUP.eb.value)
+        return '{}{}{}'.format(MARKUP.esc.value, self._code(), MARKUP.eb.value)
 
 class prettystring(str):
     def __new__(cls, contents=''):
@@ -90,31 +101,30 @@ class prettystring(str):
             setattr(cls, attr, getattr(BACKGROUND, attr))
         return super(prettystring, cls).__new__(cls, contents)
 
-    def __init__(self, s=''):
+    def __init__(self,
+                 s='',
+                 stl=MARKUP.es, c=COLOR.default, bgc=BACKGROUND.bgdefault):
         self.value = s
-        self.color = brush()
-        self.bgcolor = brush()
-        self.style = brush()
+        self.brush = brush(stl, c, bgc)
         super(prettystring, self).__init__(s)
 
     def paint(self, m):
-        if isinstance(m, COLOR):
-            self.color.setmedium(m)
-        if isinstance(m, BACKGROUND):
-            self.bgcolor.setmedium(m)
         if isinstance(m, STYLE):
-            self.style.setmedium(m)
+            self.brush.setstyle(m)
+        if isinstance(m, COLOR):
+            self.brush.setcolor(m)
+        if isinstance(m, BACKGROUND):
+            self.brush.setbgcolor(m)
         return self
 
     def __str__(self):
         return self.__repr__()
 
     def __repr__(self):
-        return '{}{}{}{}{}{}'.format(self.style, self.bgcolor, self.color,
-            self.value, brush(), MARKUP.clr.value)
+        return '{}{}{}'.format(self.brush, self.value, MARKUP.clr.value)
 
     def _composition(self):
-        return '{}{}{}'.format(self.style, self.bgcolor, self.color)
+        return '{}'.format(self.brush)
 
     def format(self, *args, **kwargs):
         t_args = []
