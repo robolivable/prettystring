@@ -3,7 +3,9 @@ from enum import Enum
 class MARKUP(Enum):
     esc = '\033['
     eb = 'm'
-    nul = '0' # clears anything
+    es = ''
+    nul = '0'
+    clr = '\033[0m' # clears anything (used to reset color back to default)
 
 class STYLE(Enum):
     bold = 1
@@ -60,7 +62,7 @@ class BACKGROUND(Enum):
     bgwhite = 107
 
 class brush(object):
-    def __init__(self, m=MARKUP.nul):
+    def __init__(self, m=MARKUP.es):
         self.code = m.value
 
     def setmedium(self, m):
@@ -108,15 +110,18 @@ class prettystring(str):
         return self.__repr__()
 
     def __repr__(self):
-        return '{}{}{}{}{}'.format(self.style, self.bgcolor, self.color,
-            self.value, brush())
+        return '{}{}{}{}{}{}'.format(self.style, self.bgcolor, self.color,
+            self.value, brush(), MARKUP.clr.value)
 
     def _composition(self):
-        return '{}{}{}'.format(self.style, self.background, self.color)
+        return '{}{}{}'.format(self.style, self.bgcolor, self.color)
 
     def format(self, *args, **kwargs):
-        for i, arg in enumerate(args):
-            args[i] = '{}{}'.format(arg, self._composition())
+        t_args = []
+        t_kwargs = {}
+        for arg in args:
+            t_args.append('{}{}'.format(arg, self._composition()))
         for k in kwargs:
-            kwargs[k] = '{}{}'.format(kwargs[k], self._composition())
-        return super(prettystring, self).format(*args, **kwargs)
+            t_kwargs[k] = '{}{}'.format(kwargs[k], self._composition())
+        #return super(prettystring, self).format(*t_args, **t_kwargs)
+        return self.__repr__().format(*t_args, **t_kwargs)
