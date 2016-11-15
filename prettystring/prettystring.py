@@ -115,6 +115,7 @@ class brush(object):
         return '{}{}{}'.format(MARKUP.esc.value, self._code(), MARKUP.eb.value)
 
 class prettystring(str):
+    @overridemethod
     def __new__(cls,
                 s='',
                 stl=STYLE.styledefault,
@@ -142,6 +143,7 @@ class prettystring(str):
             setattr(cls, attr, getattr(BACKGROUND, attr))
         return super(prettystring, cls).__new__(cls, s)
 
+    @overridemethod
     def __init__(self,
                  s='',
                  stl=STYLE.styledefault,

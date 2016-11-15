@@ -93,6 +93,11 @@ being worked on.*
     prettystring.bglcyan
     prettystring.bgwhite
 
+## Compatibility
+
+Prettystring works only on Unix based systems with support for ANSI terminal
+codes. Support for Windows based systems is in the works.
+
 ## Contribution
 
 Feel free to make prettystring better by submitting a pull request. I will
