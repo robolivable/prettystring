@@ -24,6 +24,7 @@
 # SOFTWARE.
 
 from enum import Enum
+from util import overridemethod
 
 class MARKUP(Enum):
     esc = '\033['
@@ -105,9 +106,11 @@ class brush(object):
     def _code(self):
         return '{};{};{}'.format(self.stl.value, self.c.value, self.bgc.value)
 
+    @overridemethod
     def __str__(self):
         return self.__repr__()
 
+    @overridemethod
     def __repr__(self):
         return '{}{}{}'.format(MARKUP.esc.value, self._code(), MARKUP.eb.value)
 
@@ -153,7 +156,8 @@ class prettystring(str):
 
         @param stl: STYLE
         @param c: COLOR
-        @param bgc: BACKGROUND'''
+        @param bgc: BACKGROUND
+        '''
         self.value = s
         self.brush = brush(stl, c, bgc)
         super(prettystring, self).__init__(s)
@@ -166,7 +170,8 @@ class prettystring(str):
         See README for the full list of supported mediums and the names of
         their enums.
 
-        @param m: MARKUP or COLOR or BACKGROUND'''
+        @param m: STYLE or COLOR or BACKGROUND
+        '''
         if isinstance(m, STYLE):
             self.brush.setstyle(m)
         if isinstance(m, COLOR):
@@ -175,15 +180,18 @@ class prettystring(str):
             self.brush.setbgcolor(m)
         return self
 
+    @overridemethod
     def __str__(self):
         return self.__repr__()
 
+    @overridemethod
     def __repr__(self):
         return '{}{}{}'.format(self.brush, self.value, MARKUP.clr.value)
 
     def _composition(self):
         return '{}'.format(self.brush)
 
+    @overridemethod
     def format(self, *args, **kwargs):
         '''Override method str.format to add support for inserting strings into
         prettystrings.
