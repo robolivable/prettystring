@@ -1,4 +1,4 @@
-### prettystring
+## prettystring
 
 Use prettystring to build colorful strings for more engaging output.
 
@@ -39,6 +39,59 @@ You can also format:
 
 *Note that format returns a regular string. This is a known limitation, and is
 being worked on.*
+
+## ANSI Code Enums
+
+#### Styles (Formatting)
+    pstr.styledefault
+    pstr.bold
+    pstr.dim
+    pstr.underline
+    pstr.blink
+    pstr.invert
+    pstr.hidden
+
+#### Colors
+    pstr.default
+    pstr.black
+    pstr.red
+    pstr.green
+    pstr.yellow
+    pstr.blue
+    pstr.magenta
+    pstr.cyan
+    pstr.light
+    pstr.dark
+
+#### Light colors
+    pstr.lred
+    pstr.lgreen
+    pstr.lyellow
+    pstr.lblue
+    pstr.lmagenta
+    pstr.lcyan
+    pstr.white
+
+#### Background colors
+    pstr.bgdefault
+    pstr.bgblack
+    pstr.bgred
+    pstr.bggreen
+    pstr.bgyellow
+    pstr.bgblue
+    pstr.bgmagenta
+    pstr.bgcyan
+    pstr.bglight
+    pstr.bgdark
+
+#### Light background colors
+    pstr.bglred
+    pstr.bglgreen
+    pstr.bglyellow
+    pstr.bglblue
+    pstr.bglmagenta
+    pstr.bglcyan
+    pstr.bgwhite
 
 ## Contribution
 
