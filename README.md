@@ -15,8 +15,8 @@ As straight forward as you may think:
     >>> colorful.__str__()
     '\x1b[;39;49msweet!\x1b[0m'
 
-Prettystrings are initialized with default style values. Paint them with
-`paint()`:
+Prettystrings are initialized with default ANSI style code values. Paint them
+with `paint()`:
 
     >>> colorful.paint(pstr.blue)
     >>> colorful.__str__()
