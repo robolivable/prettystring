@@ -112,7 +112,10 @@ class brush(object):
         return '{}{}{}'.format(MARKUP.esc.value, self._code(), MARKUP.eb.value)
 
 class prettystring(str):
-    def __new__(cls, contents=''):
+    def __new__(cls,
+                s='',
+                stl=STYLE.styledefault,
+                c=COLOR.default, bgc=BACKGROUND.bgdefault):
         '''Override __new__ and install style, color, and background color
         Enums.
 
@@ -134,7 +137,7 @@ class prettystring(str):
             if callable(attr) or attr.startswith('__'):
                 continue
             setattr(cls, attr, getattr(BACKGROUND, attr))
-        return super(prettystring, cls).__new__(cls, contents)
+        return super(prettystring, cls).__new__(cls, s)
 
     def __init__(self,
                  s='',
