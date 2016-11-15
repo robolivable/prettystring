@@ -34,13 +34,19 @@ Or initialize them with a style:
 
 You can also format:
 
-    >>> pstr('Hello {}').paint(pstr.red).format(pstr('world').paint(pstr.blue))
-    '\x1b[;31;49mHello \x1b[;34;49mworld\x1b[0m\x1b[;31;49m\x1b[0m'
+    >>> pstr('Hello {}!').paint(pstr.red).format(pstr('world').paint(pstr.blue))
+    '\x1b[;31;49mHello \x1b[;34;49mworld\x1b[0m\x1b[;31;49m!\x1b[0m'
 
 *Note that format returns a regular string. This is a known limitation, and is
 being worked on.*
 
-## ANSI Code Enums
+## Prettystring Enums
+
+Use these enum values with the `paint()` method to apply color and formatting
+to prettystrings.
+
+Note that you can only apply one style, one color, and one background color at
+a time (no mixing colors [yet]).
 
 #### Styles (Formatting)
     prettystring.styledefault
@@ -95,8 +101,8 @@ being worked on.*
 
 ## Compatibility
 
-Prettystring works only on Unix based systems with support for ANSI terminal
-codes. Support for Windows based systems is in the works.
+Prettystring is sure to work in most Unix based environments. Official
+compatibility tests are soon to come.
 
 ## Contribution
 
