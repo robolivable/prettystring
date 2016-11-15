@@ -43,55 +43,55 @@ being worked on.*
 ## ANSI Code Enums
 
 #### Styles (Formatting)
-    pstr.styledefault
-    pstr.bold
-    pstr.dim
-    pstr.underline
-    pstr.blink
-    pstr.invert
-    pstr.hidden
+    prettystring.styledefault
+    prettystring.bold
+    prettystring.dim
+    prettystring.underline
+    prettystring.blink
+    prettystring.invert
+    prettystring.hidden
 
 #### Colors
-    pstr.default
-    pstr.black
-    pstr.red
-    pstr.green
-    pstr.yellow
-    pstr.blue
-    pstr.magenta
-    pstr.cyan
-    pstr.light
-    pstr.dark
+    prettystring.default
+    prettystring.black
+    prettystring.red
+    prettystring.green
+    prettystring.yellow
+    prettystring.blue
+    prettystring.magenta
+    prettystring.cyan
+    prettystring.light
+    prettystring.dark
 
 #### Light colors
-    pstr.lred
-    pstr.lgreen
-    pstr.lyellow
-    pstr.lblue
-    pstr.lmagenta
-    pstr.lcyan
-    pstr.white
+    prettystring.lred
+    prettystring.lgreen
+    prettystring.lyellow
+    prettystring.lblue
+    prettystring.lmagenta
+    prettystring.lcyan
+    prettystring.white
 
 #### Background colors
-    pstr.bgdefault
-    pstr.bgblack
-    pstr.bgred
-    pstr.bggreen
-    pstr.bgyellow
-    pstr.bgblue
-    pstr.bgmagenta
-    pstr.bgcyan
-    pstr.bglight
-    pstr.bgdark
+    prettystring.bgdefault
+    prettystring.bgblack
+    prettystring.bgred
+    prettystring.bggreen
+    prettystring.bgyellow
+    prettystring.bgblue
+    prettystring.bgmagenta
+    prettystring.bgcyan
+    prettystring.bglight
+    prettystring.bgdark
 
 #### Light background colors
-    pstr.bglred
-    pstr.bglgreen
-    pstr.bglyellow
-    pstr.bglblue
-    pstr.bglmagenta
-    pstr.bglcyan
-    pstr.bgwhite
+    prettystring.bglred
+    prettystring.bglgreen
+    prettystring.bglyellow
+    prettystring.bglblue
+    prettystring.bglmagenta
+    prettystring.bglcyan
+    prettystring.bgwhite
 
 ## Contribution
 
