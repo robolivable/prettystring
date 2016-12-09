@@ -26,4 +26,4 @@ setup(name='prettystring',
       author_email='oliveira.rlde@gmail.com',
       license='MIT',
       packages=['prettystring'],
-      install_requires['enum34==1.1.6'])
+      install_requires=['enum34==1.1.6'])
