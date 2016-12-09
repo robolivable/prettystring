@@ -12,7 +12,7 @@ on the colors you specify for them.
 ============
 Installation
 ============
-Install using `pip`:
+Install using ``pip``:
 
 ::
 
@@ -31,8 +31,8 @@ As straight forward as you may think:
   >>> colorful.__str__()
   '\x1b[;39;49msweet!\x1b[0m'
 
-Prettystrings are initialized with default ANSI code values. `sweet!` should be
-in default colors. Paint it with `paint()`:
+Prettystrings are initialized with default ANSI code values. ``sweet!`` should be
+in default colors. Paint it with ``paint()``:
 
 ::
 
@@ -42,7 +42,7 @@ in default colors. Paint it with `paint()`:
   >>> print colorful
   sweet!
 
-The value of `colorful` will show up blue when `print` is called on it.
+The value of ``colorful`` will show up blue when ``print`` is called on it.
 
 You can also initialize prettystrings with a style:
 
@@ -61,13 +61,13 @@ You can even format:
   >>> pstr('Hello {}!').paint(pstr.red).format(pstr('world').paint(pstr.blue))
   '\x1b[;31;49mHello \x1b[;34;49mworld\x1b[0m\x1b[;31;49m!\x1b[0m'
 
-**Note that format returns a regular string. This is a known limitation, and is
-being worked on.**
+*Note that format returns a regular string. This is a known limitation, and is
+being worked on.*
 
 ==================
 Prettystring Enums
 ==================
-Use these enum values with the `paint()` method to apply color and formatting
+Use these enum values with the ``paint()`` method to apply color and formatting
 to prettystrings.
 
 Note that you can only apply one style, one color, and one background color at
