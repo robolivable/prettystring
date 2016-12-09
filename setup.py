@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='prettystring',
-      version='0.1.0',
+      version='0.1.1',
       description='Build ANSI color encoded strings with ease.',
       long_description=readme(),
       classifiers=[
