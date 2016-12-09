@@ -120,7 +120,8 @@ class prettystring(str):
                 s='',
                 stl=STYLE.styledefault,
                 c=COLOR.default, bgc=BACKGROUND.bgdefault):
-        '''Override __new__ and install style, color, and background color
+        '''
+        Override __new__ and install style, color, and background color
         Enums.
 
         This allows a nice way of passing the formatting codes around:
@@ -148,7 +149,8 @@ class prettystring(str):
                  s='',
                  stl=STYLE.styledefault,
                  c=COLOR.default, bgc=BACKGROUND.bgdefault):
-        '''Initialize new prettystring.
+        '''
+        Initialize new prettystring.
 
         Formatting may be set during initialization:
 
@@ -165,7 +167,8 @@ class prettystring(str):
         super(prettystring, self).__init__(s)
 
     def paint(self, m):
-        '''Apply medium to the prettystring.
+        '''
+        Apply medium to the prettystring.
 
         Prettystring supports the list of ANSI color codes.
 
@@ -173,6 +176,7 @@ class prettystring(str):
         their enums.
 
         @param m: STYLE or COLOR or BACKGROUND
+        @return self: for chaining calls to this prettystring
         '''
         if isinstance(m, STYLE):
             self.brush.setstyle(m)
@@ -195,7 +199,8 @@ class prettystring(str):
 
     @overridemethod
     def format(self, *args, **kwargs):
-        '''Override method str.format to add support for inserting strings into
+        '''
+        Override method str.format to add support for inserting strings into
         prettystrings.
 
         This method currently only returns a regular string.
