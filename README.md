@@ -1,4 +1,5 @@
 ## prettystring
+[![Build Status](https://travis-ci.org/robolivable/prettystring.svg?branch=master)](https://travis-ci.org/robolivable/prettystring)
 
 Use prettystring to build colorful strings for more engaging output.
 

@@ -1,6 +1,9 @@
 ============
 prettystring
 ============
+.. image:: https://travis-ci.org/robolivable/prettystring.svg?branch=master
+    :target: https://travis-ci.org/robolivable/prettystring
+
 Use prettystring to build colorful strings for more engaging output.
 
 Prettystrings are conveniently encoded with the proper ANSI color codes based
